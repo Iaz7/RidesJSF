@@ -24,6 +24,11 @@ https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
         <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
         <param-value>.xhtml</param-value>
     </context-param>
+    <context-param>
+        <param-name>primefaces.UPLOADER</param-name>
+        <param-value>native</param-value>
+    </context-param>
+
     <!-- Configuración de bienvenida -->
     <welcome-file-list>
         <welcome-file>Index.xhtml</welcome-file>

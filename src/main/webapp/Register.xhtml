@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Register</title>
+        <h:outputStylesheet name="css/style.css" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <div class="form-container">
+                <h2>Register</h2>
+                <h:messages globalOnly="true" layout="list" styleClass="message-container" />
+
+                <label for="username">Username:</label>
+                <h:inputText id="username" value="#{register.username}" />
+
+                <label for="password">Password:</label>
+                <h:inputSecret id="password" value="#{register.password}" />
+
+                <label for="userType">User Type:</label>
+                <h:selectOneMenu id="userType" value="#{register.userType}">
+                    <f:selectItem itemValue="Driver" itemLabel="Driver" />
+                    <f:selectItem itemValue="Traveler" itemLabel="Traveler" />
+                </h:selectOneMenu>
+
+                <div class="button-container">
+                    <h:commandButton value="Register" action="#{register.register}" />
+                    <h:button value="Back" outcome="Index"/>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

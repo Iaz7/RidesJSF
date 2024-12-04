@@ -6,9 +6,17 @@
 <f:view>
     <h:head>
         <title>Rides</title>
+        <h:outputStylesheet name="css/style.css" />
     </h:head>
     <h:body>
-        Hola
+        <div class="form-container">
+            <h2>Rides</h2>
+            <div class="button-container">
+                <h:button value="Register" outcome="register" styleClass="button"/>
+                <h:button value="Login" outcome="login" styleClass="button"/>
+                <h:button value="Create ride" outcome="createRide" styleClass="button"/>
+            </div>
+        </div>
     </h:body>
 </f:view>
 </html>

@@ -5,4 +5,45 @@
         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
 https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd"
         version="3.0">
+
+    <navigation-rule>
+        <from-view-id>/Index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>register</from-outcome>
+            <to-view-id>/Register.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/Login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>createRide</from-outcome>
+            <to-view-id>/CreateRide.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/Login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/Index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/Register.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/Index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/CreateRide.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/Index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>
