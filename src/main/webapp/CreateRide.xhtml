@@ -5,13 +5,13 @@
       xmlns:p="http://primefaces.org/ui">
 <f:view>
    <h:head>
-      <title>Create Ride</title>
+      <title>Create ride</title>
       <h:outputStylesheet name="css/style.css" />
    </h:head>
    <h:body>
       <div class="form-container">
          <h2>Create Ride</h2>
-
+         <h:messages globalOnly="true" layout="list" styleClass="message-container" />
          <h:form>
             <label for="origin">Depart city:</label>
             <h:inputText id="origin" value="#{createRide.departCity}" required="true">
@@ -37,16 +37,16 @@
                <f:ajax event="blur" render="seatsMessage" />
                <f:validateLongRange minimum="1" />
             </h:inputText>
-            <h:message id="seatsMessage" for="seats" styleClass="error-message" />
+            <h:message id="s" for="seats" styleClass="error-message" />
 
-            <label for="rideDate">Ride Date:</label>
+            <label for="rideDate">Ride date:</label>
             <p:calendar id="rideDate" value="#{createRide.rideDate}" navigator="true" required="true" pattern="dd/MM/yyyy" mode="inline">
                <p:ajax event="dateSelect" update="rideDateMessage" />
             </p:calendar>
             <h:message id="rideDateMessage" for="rideDate" styleClass="error-message" />
 
             <div class="button-container">
-               <h:commandButton value="Create Ride" action="#{createRide.createRide}" />
+               <h:commandButton value="Create ride" action="#{createRide.createRide}" />
                <h:button value="Back" outcome="Index" />
             </div>
          </h:form>
