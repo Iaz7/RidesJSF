@@ -2,7 +2,7 @@ package factories;
 
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
-import dataAccess.DataAccess;
+import dataAccess.HibernateDataAccess;
 
 public class BLFactory {
 
@@ -12,7 +12,7 @@ public class BLFactory {
 
     public static BLFacade getFacade() {
         if (bl == null) {
-            DataAccess da = new DataAccess();
+            HibernateDataAccess da = new HibernateDataAccess();
             bl = new BLFacadeImplementation(da);
         }
         return bl;
