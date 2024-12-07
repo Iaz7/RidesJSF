@@ -14,10 +14,16 @@
                 <h:messages globalOnly="true" layout="list" styleClass="message-container" />
 
                 <label for="username">Username:</label>
-                <h:inputText id="username" value="#{login.username}" />
+                <h:inputText id="username" value="#{login.username}" required="true" requiredMessage="Fill username field">
+                    <f:ajax event="blur" render="mensajeusername"/>
+                </h:inputText>
+                <h:message id="mensajeusername" for="username" styleClass="error-message" />
 
                 <label for="password">Password:</label>
-                <h:inputSecret id="password" value="#{login.password}" />
+                <h:inputSecret id="password" value="#{login.password}" required="true" requiredMessage="Fill password field">
+                    <f:ajax event="blur" render="mensajepassword"/>
+                </h:inputSecret>
+                <h:message id="mensajepassword" for="password" styleClass="error-message" />
 
                 <div class="button-container">
                     <h:commandButton value="Login" action="#{login.login}" />

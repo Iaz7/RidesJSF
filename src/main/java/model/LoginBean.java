@@ -19,29 +19,14 @@ public class LoginBean implements Serializable {
 
     private static BLFacade appFacadeInterface = BLFactory.getFacade();
 
-    public String getUsername() {
-        return username;
-    }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
     public String login() {
         FacesContext context = FacesContext.getCurrentInstance();
-
-        if (username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Please enter both username and password.", null));
-            return null;
-        }
 
         boolean isRegistered = appFacadeInterface.isRegistered(username, password);
 
