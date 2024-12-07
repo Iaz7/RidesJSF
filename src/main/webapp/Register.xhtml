@@ -14,14 +14,14 @@
                 <h:messages globalOnly="true" layout="list" styleClass="message-container" />
 
                 <label for="username">Username:</label>
-                <h:inputText id="username" value="#{register.username}" validatorMessage="Username must begin with a letter and be at least 4 characters long">
+                <h:inputText id="username" value="#{register.username}" required="true" requiredMessage="Fill username field" validatorMessage="Username must begin with a letter, be at least 4 characters long and have no special characters">
                     <f:validateRegex pattern="^[A-Za-z][A-Za-z0-9]{3,}$" />
                     <f:ajax event="blur" render="mensajeusername"/>
                 </h:inputText>
                 <h:message id="mensajeusername" for="username" styleClass="error-message" />
 
                 <label for="password">Password:</label>
-                <h:inputSecret id="password" value="#{register.password}" validatorMessage="Password must be at least 6 characters long and include at least one uppercase letter.">
+                <h:inputSecret id="password" value="#{register.password}" required="true" requiredMessage="Fill password field" validatorMessage="Password must be at least 6 characters long and include at least one uppercase letter.">
                     <f:validateRegex pattern="^(?=.*[A-Z]).{6,}$" />
                     <f:ajax event="blur" render="mensajepassword"/>
                 </h:inputSecret>

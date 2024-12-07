@@ -39,12 +39,6 @@ public class RegisterBean implements Serializable {
     public String register() {
         FacesContext context = FacesContext.getCurrentInstance();
 
-        if (username == null || username.trim().isEmpty() ||
-                password == null || password.trim().isEmpty()) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Please fill in all fields.", null));
-            return null;
-        }
-
         if (appFacadeInterface.addDriver(username, password)) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registration successful!", null));
             username = "";
