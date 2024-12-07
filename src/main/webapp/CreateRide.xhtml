@@ -14,14 +14,14 @@
          <h:form>
             <label for="origin">Depart city:</label>
             <h:inputText id="origin" value="#{createRide.departCity}" required="true" validatorMessage="City name must contain 3 characters, begin with a capital letter and have no numbers or special characters">
-               <f:validateRegex pattern="^[A-Z][a-zA-Z]{2,}$" />
+               <f:validateRegex pattern="^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúñÁÉÍÓÚÑ]*(\s[a-zA-ZáéíóúñÁÉÍÓÚÑ]+)*$" />
                <f:ajax event="blur" render="originMessage" />
             </h:inputText>
             <h:message id="originMessage" for="origin" styleClass="error-message" />
 
             <label for="destination">Arrival city:</label>
             <h:inputText id="destination" value="#{createRide.arrivalCity}" required="true" validatorMessage="City name must contain 3 characters, begin with a capital letter and have no numbers">
-               <f:validateRegex pattern="^[A-Z][a-zA-Z]{2,}$" />
+               <f:validateRegex pattern="^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúñÁÉÍÓÚÑ]*(\s[a-zA-ZáéíóúñÁÉÍÓÚÑ]+)*$" />
                <f:ajax event="blur" render="destinationMessage" />
             </h:inputText>
             <h:message id="destinationMessage" for="destination" styleClass="error-message" />
