@@ -32,6 +32,10 @@ https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd"
             <from-outcome>index</from-outcome>
             <to-view-id>/Index.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>myRides</from-outcome>
+            <to-view-id>/MyRides.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
@@ -63,6 +67,14 @@ https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd"
         <navigation-case>
             <from-outcome>back</from-outcome>
             <to-view-id>/Index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/MyRides.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>back</from-outcome>
+            <to-view-id>/DriverMenu.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
