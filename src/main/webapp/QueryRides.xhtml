@@ -29,6 +29,9 @@
                 <p:calendar id="rideDate" value="#{queryRides.rideDate}" navigator="true" required="true" pattern="dd/MM/yyyy" mode="inline">
                     <p:ajax event="dateSelect" listener="#{queryRides.rideDateSelected}" update="foundRides"/>
                 </p:calendar>
+                <div class="button-container">
+                    <h:button value="Back" outcome="back" />
+                </div>
         </h:form>
         </div>
         <div class="form-container">

@@ -17,19 +17,31 @@ https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd"
             <to-view-id>/Login.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>createRide</from-outcome>
-            <to-view-id>/CreateRide.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
             <from-outcome>queryRides</from-outcome>
             <to-view-id>/QueryRides.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/Login.xhtml</from-view-id>
+        <from-view-id>/DriverMenu.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>createRide</from-outcome>
+            <to-view-id>/CreateRide.xhtml</to-view-id>
+        </navigation-case>
         <navigation-case>
             <from-outcome>index</from-outcome>
+            <to-view-id>/Index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/Login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Driver</from-outcome>
+            <to-view-id>/DriverMenu.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Traveler</from-outcome>
             <to-view-id>/Index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
@@ -45,15 +57,15 @@ https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd"
     <navigation-rule>
         <from-view-id>/CreateRide.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>index</from-outcome>
-            <to-view-id>/Index.xhtml</to-view-id>
+            <from-outcome>back</from-outcome>
+            <to-view-id>/DriverMenu.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
         <from-view-id>/QueryRides.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>index</from-outcome>
+            <from-outcome>back</from-outcome>
             <to-view-id>/Index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>

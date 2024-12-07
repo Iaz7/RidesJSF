@@ -14,15 +14,15 @@
                 <h:messages globalOnly="true" layout="list" styleClass="message-container" />
 
                 <label for="username">Username:</label>
-                <h:inputText id="username" value="#{register.username}" validatorMessage="El usuario debe contener como mínimo 3 caracteres">
-                    <f:validateRegex pattern="^(([a-zA-Z]){3,15}[0-9]?)$"/>
+                <h:inputText id="username" value="#{register.username}" validatorMessage="Username must begin with a letter and be at least 4 characters long">
+                    <f:validateRegex pattern="^[A-Za-z][A-Za-z0-9]{3,}$" />
                     <f:ajax event="blur" render="mensajeusername"/>
                 </h:inputText>
                 <h:message id="mensajeusername" for="username" styleClass="error-message" />
 
                 <label for="password">Password:</label>
-                <h:inputSecret id="password" value="#{register.password}" >
-                    <f:validateRegex pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,20}$"/>
+                <h:inputSecret id="password" value="#{register.password}" validatorMessage="Password must be at least 6 characters long and include at least one uppercase letter.">
+                    <f:validateRegex pattern="^(?=.*[A-Z]).{6,}$" />
                     <f:ajax event="blur" render="mensajepassword"/>
                 </h:inputSecret>
                 <h:message id="mensajepassword" for="password" styleClass="error-message" />
