@@ -27,12 +27,6 @@
                 </h:inputSecret>
                 <h:message id="mensajepassword" for="password" styleClass="error-message" />
 
-                <label for="userType">User Type:</label>
-                <h:selectOneMenu id="userType" value="#{register.userType}">
-                    <f:selectItem itemValue="Driver" itemLabel="Driver" />
-                    <f:selectItem itemValue="Traveler" itemLabel="Traveler" />
-                </h:selectOneMenu>
-
                 <div class="button-container">
                     <h:commandButton value="Register" action="#{register.register}" />
                     <h:button value="Back" outcome="Index"/>

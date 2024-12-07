@@ -1,7 +1,8 @@
 package model;
 
-import jakarta.inject.Named;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import java.io.Serializable;
 
 @Named("driverMenu")
@@ -9,8 +10,12 @@ import java.io.Serializable;
 public class DriverMenuBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String driverName ="driver";
+    @Inject
+    private LoginBean loginBean;
 
-    public String getDriverName() { return driverName; }
-    public void setDriverName(String driverName) { this.driverName = driverName; }
+    public LoginBean getLoginBean() { return loginBean; }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
+    }
 }

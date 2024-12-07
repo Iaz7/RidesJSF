@@ -11,7 +11,7 @@
    <h:body>
       <div class="form-container">
          <h2>Driver menu</h2>
-         <h3>Logged in as #{driverMenu.driverName}</h3>
+         <h3>Logged in as #{driverMenu.loginBean.username}</h3>
          <div class="button-container">
             <h:button value="Create ride" outcome="createRide" styleClass="button"/>
             <h:button value="Logout" outcome="index" styleClass="button"/>

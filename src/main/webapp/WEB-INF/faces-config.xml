@@ -37,12 +37,8 @@ https://jakarta.ee/xml/ns/jakartaee/web-facesconfig_3_0.xsd"
     <navigation-rule>
         <from-view-id>/Login.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>Driver</from-outcome>
+            <from-outcome>login</from-outcome>
             <to-view-id>/DriverMenu.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>Traveler</from-outcome>
-            <to-view-id>/Index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 

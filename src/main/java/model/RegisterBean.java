@@ -17,7 +17,6 @@ public class RegisterBean implements Serializable {
 
     private String username = null;
     private String password = null;
-    private String userType = "Driver";
 
     private static BLFacade appFacadeInterface = BLFactory.getFacade();
 
@@ -37,37 +36,19 @@ public class RegisterBean implements Serializable {
         this.password = password;
     }
 
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
     public String register() {
         FacesContext context = FacesContext.getCurrentInstance();
 
         if (username == null || username.trim().isEmpty() ||
-                password == null || password.trim().isEmpty() ||
-                userType == null || userType.trim().isEmpty()) {
+                password == null || password.trim().isEmpty()) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Please fill in all fields.", null));
             return null;
         }
 
-        boolean added = false;
-
-        if ("Driver".equals(userType)) {
-            added = appFacadeInterface.addDriver(username, password);
-        } else if ("Traveler".equals(userType)) {
-            added = appFacadeInterface.addTraveler(username, password);
-        }
-
-        if (added) {
+        if (appFacadeInterface.addDriver(username, password)) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registration successful!", null));
             username = "";
             password = "";
-            userType = "Driver";
         } else {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Registration failed. Try again.", null));
         }

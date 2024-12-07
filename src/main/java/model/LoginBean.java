@@ -28,10 +28,8 @@ public class LoginBean implements Serializable {
     public String login() {
         FacesContext context = FacesContext.getCurrentInstance();
 
-        boolean isRegistered = appFacadeInterface.isRegistered(username, password);
-
-        if (isRegistered) {
-            return appFacadeInterface.getMotaByUsername(username);
+        if (appFacadeInterface.isRegistered(username, password)) {
+            return "login";
         } else {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid username or password.", null));
             return null;
