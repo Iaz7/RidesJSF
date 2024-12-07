@@ -28,18 +28,13 @@ public class CreateRideBean implements Serializable {
     public String createRide() {
         FacesContext context = FacesContext.getCurrentInstance();
 
-        if (rideDate.before(new Date())) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Date must be later than today.", null));
-            return null;
-        }
-
         try {
             appFacadeInterface.createRide(departCity, arrivalCity, UtilDate.trim(rideDate), seats, price, "driver");
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ride successfully created!", null));
         } catch (RideAlreadyExistException e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ride already exists.", null));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR: ride already exists", null));
         } catch (RideMustBeLaterThanTodayException e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Date must be later than today.", null));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR: date must be later than today.", null));
         }
 
         return null;
