@@ -13,12 +13,19 @@
                 <h2>Register</h2>
                 <h:messages globalOnly="true" layout="list" styleClass="message-container" />
 
-                <label for="username">Username:</label>
-                <h:inputText id="username" value="#{register.username}" required="true" requiredMessage="Fill username field" validatorMessage="Username must begin with a letter, be at least 4 characters long and have no special characters">
-                    <f:validateRegex pattern="^[A-Za-z][A-Za-z0-9]{3,}$" />
-                    <f:ajax event="blur" render="mensajeusername"/>
+                <label for="email">Email:</label>
+                <h:inputText id="email" value="#{register.email}" required="true" requiredMessage="Fill email field" validatorMessage="Email does not have the correct format">
+                    <f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+                    <f:ajax event="blur" render="mensajeemail"/>
                 </h:inputText>
-                <h:message id="mensajeusername" for="username" styleClass="error-message" />
+                <h:message id="mensajeemail" for="email" styleClass="error-message" />
+
+                <label for="name">Name:</label>
+                <h:inputText id="name" value="#{register.name}" required="true" requiredMessage="Fill name field" validatorMessage="Name does not have the correct format">
+                    <f:validateRegex pattern="^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúñÁÉÍÓÚÑ]*(\s[a-zA-ZáéíóúñÁÉÍÓÚÑ]+)*$" />
+                    <f:ajax event="blur" render="mensajename"/>
+                </h:inputText>
+                <h:message id="mensajename" for="name" styleClass="error-message" />
 
                 <label for="password">Password:</label>
                 <h:inputSecret id="password" value="#{register.password}" required="true" requiredMessage="Fill password field" validatorMessage="Password must be at least 6 characters long and include at least one uppercase letter.">

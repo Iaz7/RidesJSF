@@ -10,19 +10,16 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Driver implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	@XmlID
 	@Id 
 	private String email;
+	private String password;
 	private String name; 
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
@@ -32,32 +29,35 @@ public class Driver implements Serializable {
 		super();
 	}
 
-	public Driver(String email, String name) {
+	public Driver(String email, String password, String name) {
 		this.email = email;
+		this.password = password;
 		this.name = name;
 	}
-	
 	
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	
 	
 	public String toString(){
-		return email+";"+name+rides;
+		return email +";"+name+rides;
 	}
 	
 	/**

@@ -20,13 +20,16 @@ public class Ride implements Serializable {
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@GeneratedValue
 	private Integer rideNumber;
+	@Column(name = "origin")
 	private String from;
+	@Column(name = "destination")
 	private String to;
 	private int nPlaces;
 	private Date date;
 	private float price;
 	
-	private Driver driver;  
+	@ManyToOne
+	private Driver driver;
 	
 	public Ride(){
 		super();

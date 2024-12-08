@@ -74,6 +74,6 @@ public interface BLFacade  {
 
 	public boolean isRegistered(String erab, String passwd);
 
-	public boolean addDriver(String username, String password);
+	public boolean addDriver(String username, String password, String name);
 	
 }

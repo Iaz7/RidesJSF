@@ -80,9 +80,9 @@ public class BLFacadeImplementation  implements BLFacade {
 		return registered;
 	}
 
-	public boolean addDriver(String username, String password) {
+	public boolean addDriver(String username, String password, String name) {
 		dbManager.open();
-		boolean added = dbManager.addDriver(username, password);
+		boolean added = dbManager.addDriver(username, password, name);
 		dbManager.close();
 		return added;
 	}
