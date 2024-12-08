@@ -73,9 +73,12 @@ public class BLFacadeImplementation  implements BLFacade {
 		return dates;
 	}
 
-	public boolean isRegistered(String erab, String passwd) {
+	public boolean login(String email, String password) {
 		dbManager.open();
-		boolean registered = dbManager.isRegistered(erab, passwd);
+		boolean registered = dbManager.isRegistered(email, password);
+		if (registered) {
+			loggedInDriver = email;
+		}
 		dbManager.close();
 		return registered;
 	}
@@ -85,6 +88,18 @@ public class BLFacadeImplementation  implements BLFacade {
 		boolean added = dbManager.addDriver(username, password, name);
 		dbManager.close();
 		return added;
+	}
+
+	private String loggedInDriver;
+	public String getLoggedInDriver() {
+		return loggedInDriver;
+	}
+
+	public List<Ride> getRidesByDriver(String driverEmail) {
+		dbManager.open();
+		List<Ride> rides = dbManager.getRidesByDriver(driverEmail);
+		dbManager.close();
+		return rides;
 	}
 
 	/**

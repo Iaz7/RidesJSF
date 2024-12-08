@@ -5,11 +5,9 @@ import java.util.List;
 
 //import domain.Booking;
 import domain.Ride;
-import domain.Driver;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
 
-import javax.jws.WebMethod;
 import javax.jws.WebService;
  
 /**
@@ -72,8 +70,12 @@ public interface BLFacade  {
 	 */	
 	public void initializeBD();
 
-	public boolean isRegistered(String erab, String passwd);
+	public boolean login(String erab, String passwd);
 
 	public boolean addDriver(String username, String password, String name);
+
+	public List<Ride> getRidesByDriver(String driverEmail);
+
+	public String getLoggedInDriver();
 	
 }

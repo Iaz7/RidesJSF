@@ -28,7 +28,7 @@ public class LoginBean implements Serializable {
     public String login() {
         FacesContext context = FacesContext.getCurrentInstance();
 
-        if (appFacadeInterface.isRegistered(email, password)) {
+        if (appFacadeInterface.login(email, password)) {
             return "login";
         } else {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid email or password.", null));

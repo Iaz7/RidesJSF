@@ -100,6 +100,12 @@ public class HibernateDataAccess {
         return added;
     }
 
+    public List<Ride> getRidesByDriver(String driverEmail) {
+        TypedQuery<Ride> query = em.createQuery("SELECT r FROM Ride r WHERE r.driver.email=?1",Ride.class);
+        query.setParameter(1, driverEmail);
+        return query.getResultList();
+    }
+
     public void initializeDB() {
     }
 }
