@@ -3,6 +3,7 @@ package model;
 import businessLogic.BLFacade;
 import domain.Ride;
 import factories.BLFactory;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 
@@ -10,7 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named("myRides")
-@SessionScoped
+@RequestScoped
 public class MyRidesBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
