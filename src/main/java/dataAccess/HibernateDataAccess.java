@@ -6,6 +6,7 @@ import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,7 +44,7 @@ public class HibernateDataAccess {
 
             em.getTransaction().commit();
             return ride;
-        } catch (Exception e) {
+        } catch (NullPointerException | PersistenceException e) {
             System.out.println(e.getMessage());
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();

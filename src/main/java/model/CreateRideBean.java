@@ -9,6 +9,7 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -23,16 +24,13 @@ public class CreateRideBean implements Serializable {
     private Float price;
     private Date rideDate;
 
-    @Inject
-    private LoginBean loginBean;
-
     private static BLFacade appFacadeInterface = BLFactory.getFacade();
 
     public String createRide() {
         FacesContext context = FacesContext.getCurrentInstance();
-
+        System.out.println(rideDate.toString());
         try {
-            appFacadeInterface.createRide(departCity, arrivalCity, rideDate, seats, price, loginBean.getEmail());
+            appFacadeInterface.createRide(departCity, arrivalCity, rideDate, seats, price, appFacadeInterface.getLoggedInDriver());
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ride successfully created!", null));
         } catch (RideAlreadyExistException e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR: ride already exists", null));
