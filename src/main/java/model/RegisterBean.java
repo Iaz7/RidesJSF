@@ -15,17 +15,18 @@ public class RegisterBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String username = null;
+    private String email = null;
+    private String name = null;
     private String password = null;
 
     private static BLFacade appFacadeInterface = BLFactory.getFacade();
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -36,12 +37,21 @@ public class RegisterBean implements Serializable {
         this.password = password;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String register() {
         FacesContext context = FacesContext.getCurrentInstance();
 
-        if (appFacadeInterface.addDriver(username, password)) {
+        if (appFacadeInterface.addDriver(email, password, name)) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registration successful!", null));
-            username = "";
+            email = "";
+            name = "";
             password = "";
         } else {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Registration failed. Try again.", null));

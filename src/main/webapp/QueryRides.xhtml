@@ -37,7 +37,7 @@
         <div class="form-container">
             <h2>Found rides:</h2>
             <p:dataTable id="foundRides" value="#{queryRides.foundRides}" var="item" border="1">
-                <p:column headerText="Driver">#{item.driver.username}</p:column>
+                <p:column headerText="Driver">#{item.driver.email}</p:column>
                 <p:column headerText="Seats">#{item.nPlaces}</p:column>
                 <p:column headerText="Price">#{item.price}</p:column>
             </p:dataTable>

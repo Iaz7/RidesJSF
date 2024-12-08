@@ -14,13 +14,13 @@ public class LoginBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String username;
+    private String email;
     private String password;
 
     private static BLFacade appFacadeInterface = BLFactory.getFacade();
 
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
@@ -28,10 +28,10 @@ public class LoginBean implements Serializable {
     public String login() {
         FacesContext context = FacesContext.getCurrentInstance();
 
-        if (appFacadeInterface.isRegistered(username, password)) {
+        if (appFacadeInterface.isRegistered(email, password)) {
             return "login";
         } else {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid username or password.", null));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid email or password.", null));
             return null;
         }
     }
