@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <h:head>
+        <title>Chat</title>
+        <h:outputStylesheet name="css/style.css" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <div class="form-container">
+                <h2>Chat</h2>
+                <h:messages globalOnly="true" layout="list" styleClass="message-container" />
+                <p:dataList value="#{chatBean.messages}" var="message" type="none" styleClass="chat-window">
+                    <h:panelGroup layout="block" styleClass="#{message.sender == chatBean.currentUser ? 'my-message' : 'other-message'}">
+                        <h:outputText value="#{message.sender}" styleClass="message-sender"/>
+                        <h:outputText value="#{message.text}" styleClass="message-text"/>
+                    </h:panelGroup>
+                </p:dataList>
+            </div>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

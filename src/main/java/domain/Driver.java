@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -24,6 +25,9 @@ public class Driver implements Serializable {
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Ride> rides=new Vector<Ride>();
+
+	@OneToMany
+	private List<ChatMessage> sentMessages = new ArrayList<>();
 
 	public Driver() {
 		super();
@@ -58,6 +62,14 @@ public class Driver implements Serializable {
 	
 	public String toString(){
 		return email +";"+name+rides;
+	}
+
+	public List<ChatMessage> getSentMessages() {
+		return sentMessages;
+	}
+
+	public void setSentMessages(List<ChatMessage> chats) {
+		this.sentMessages = chats;
 	}
 	
 	/**

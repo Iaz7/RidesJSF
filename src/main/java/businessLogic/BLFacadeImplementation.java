@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import dataAccess.HibernateDataAccess;
+import domain.ChatMessage;
 import domain.Ride;
 import domain.Driver;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -100,6 +101,20 @@ public class BLFacadeImplementation  implements BLFacade {
 		List<Ride> rides = dbManager.getRidesByDriver(driverEmail);
 		dbManager.close();
 		return rides;
+	}
+
+	public List<ChatMessage> getMessages() {
+		dbManager.open();
+		List<ChatMessage> messages = dbManager.getMessages();
+		dbManager.close();
+		return messages;
+	}
+
+	public boolean sendMessage(String senderEmail, String message) {
+		dbManager.open();
+		boolean sent = dbManager.sendMessage(senderEmail, message);
+		dbManager.close();
+		return sent;
 	}
 
 	/**
