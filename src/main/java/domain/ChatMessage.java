@@ -15,6 +15,8 @@ public class ChatMessage implements Serializable {
 
     @ManyToOne
     private Driver sender;
+    private Date date;
+    private String message;
 
     public ChatMessage() { super(); }
 
@@ -23,9 +25,6 @@ public class ChatMessage implements Serializable {
         this.message = message;
         this.date = new Date();
     }
-
-    private Date date;
-    private String message;
 
     public int getId() {
         return id;

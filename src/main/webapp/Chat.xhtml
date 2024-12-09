@@ -9,16 +9,20 @@
         <h:outputStylesheet name="css/style.css" />
     </h:head>
     <h:body>
-        <h:form>
-            <div class="form-container">
-                <h2>Chat</h2>
-                <h:messages globalOnly="true" layout="list" styleClass="message-container" />
-                <p:dataList value="#{chatBean.messages}" var="message" type="none" styleClass="chat-window">
-                    <h:panelGroup layout="block" styleClass="#{message.sender == chatBean.currentUser ? 'my-message' : 'other-message'}">
-                        <h:outputText value="#{message.sender}" styleClass="message-sender"/>
-                        <h:outputText value="#{message.text}" styleClass="message-text"/>
+        <h:form id="chatForm" styleClass="chat-container">
+            <h2>Chat</h2>
+            <h:messages globalOnly="true" layout="list" styleClass="message-container" />
+            <div class="chat-window">
+                <p:dataList value="#{chat.messages}" var="message" type="none">
+                    <h:panelGroup layout="block" styleClass="#{message.sender.email.equals(chat.currentUser) ? 'my-message' : 'other-message'}">
+                        <h:outputText value="#{message.sender.name}" styleClass="message-sender"/>
+                        <h:outputText value="#{message.message}" styleClass="message-text"/>
                     </h:panelGroup>
                 </p:dataList>
+            </div>
+            <div style="margin-top: 20px;">
+                <h:inputTextarea id="input" value="#{chat.input}" cols="50" rows="2" styleClass="chat-input"/>
+                <h:commandButton value="Send" action="#{chat.sendMessage}" update="chatForm" styleClass="chat-button"/>
             </div>
         </h:form>
     </h:body>
