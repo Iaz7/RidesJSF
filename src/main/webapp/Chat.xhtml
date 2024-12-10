@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<f:view>
+    <h:head>
+        <title>Chat</title>
+        <h:outputStylesheet name="css/style.css" />
+    </h:head>
+    <h:body>
+        <h:form id="chatForm" styleClass="chat-container">
+            <h2>Chat</h2>
+            <h:messages globalOnly="true" layout="list" styleClass="message-container" />
+            <div class="chat-window">
+                <p:dataList value="#{chat.messages}" var="message" type="none" emptyMessage="No messages yet.">
+                    <h:panelGroup layout="block" styleClass="#{message.sender.email.equals(chat.currentUser) ? 'my-message' : 'other-message'}">
+                        <h:outputText value="#{message.sender.name}" styleClass="message-sender"/>
+                        <h:outputText value="#{message.message}" styleClass="message-text"/>
+                    </h:panelGroup>
+                </p:dataList>
+            </div>
+            <div class="chat-input-container">
+                <h:inputTextarea id="input" value="#{chat.input}" cols="50" rows="2" styleClass="chat-input">
+                    <f:ajax event="keyup" render="sendButton"/>
+                </h:inputTextarea>
+                <div class="button-container">
+                    <h:commandButton id="sendButton" value="Send" action="#{chat.sendMessage}" update="chatForm" styleClass="chat-button" disabled="#{chat.input.length() == 0}"/>
+                    <h:button value="Back" outcome="back" styleClass="chat-button"/>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

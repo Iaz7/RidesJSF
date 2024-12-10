@@ -7,7 +7,6 @@ import factories.BLFactory;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
@@ -22,13 +21,12 @@ public class CreateRideBean implements Serializable {
     private String arrivalCity;
     private Integer seats;
     private Float price;
-    private Date rideDate;
+    private Date rideDate = new Date();
 
     private static BLFacade appFacadeInterface = BLFactory.getFacade();
 
     public String createRide() {
         FacesContext context = FacesContext.getCurrentInstance();
-        System.out.println(rideDate.toString());
         try {
             appFacadeInterface.createRide(departCity, arrivalCity, rideDate, seats, price, appFacadeInterface.getLoggedInDriver());
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ride successfully created!", null));

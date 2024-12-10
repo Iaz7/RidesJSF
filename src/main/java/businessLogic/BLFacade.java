@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 //import domain.Booking;
+import domain.ChatMessage;
 import domain.Ride;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
@@ -77,5 +78,9 @@ public interface BLFacade  {
 	public List<Ride> getRidesByDriver(String driverEmail);
 
 	public String getLoggedInDriver();
+
+	public List<ChatMessage> getMessages();
+
+	public boolean sendMessage(String senderEmail, String message);
 	
 }

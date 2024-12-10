@@ -1,5 +1,6 @@
 package dataAccess;
 
+import domain.ChatMessage;
 import domain.Driver;
 import domain.Ride;
 import exceptions.RideAlreadyExistException;
@@ -105,6 +106,32 @@ public class HibernateDataAccess {
         TypedQuery<Ride> query = em.createQuery("SELECT r FROM Ride r WHERE r.driver.email=?1",Ride.class);
         query.setParameter(1, driverEmail);
         return query.getResultList();
+    }
+
+    public List<ChatMessage> getMessages() {
+        TypedQuery<ChatMessage> query = em.createQuery("SELECT m FROM ChatMessage m ORDER BY m.date ASC", ChatMessage.class);
+        return query.getResultList();
+    }
+
+    public boolean sendMessage(String senderEmail, String message)
+    {
+        boolean sent = false;
+        try {
+            em.getTransaction().begin();
+            Driver sender = em.find(Driver.class, senderEmail);
+            if (sender != null) {
+                ChatMessage chatMessage = new ChatMessage(sender, message);
+                sender.getSentMessages().add(chatMessage);
+                em.persist(chatMessage);
+                sent = true;
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+        }
+        return sent;
     }
 
     public void initializeDB() {
