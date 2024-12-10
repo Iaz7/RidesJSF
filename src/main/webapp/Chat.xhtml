@@ -13,7 +13,7 @@
             <h2>Chat</h2>
             <h:messages globalOnly="true" layout="list" styleClass="message-container" />
             <div class="chat-window">
-                <p:dataList value="#{chat.messages}" var="message" type="none">
+                <p:dataList value="#{chat.messages}" var="message" type="none" emptyMessage="No messages yet.">
                     <h:panelGroup layout="block" styleClass="#{message.sender.email.equals(chat.currentUser) ? 'my-message' : 'other-message'}">
                         <h:outputText value="#{message.sender.name}" styleClass="message-sender"/>
                         <h:outputText value="#{message.message}" styleClass="message-text"/>
