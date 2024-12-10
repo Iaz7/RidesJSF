@@ -3,6 +3,7 @@ package model;
 import businessLogic.BLFacade;
 import domain.ChatMessage;
 import factories.BLFactory;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
@@ -16,7 +17,7 @@ public class ChatBean implements Serializable {
 
     private List<ChatMessage> messages;
     private String currentUser;
-    private String input;
+    private String input = "";
 
     private static BLFacade appFacadeInterface = BLFactory.getFacade();
 
@@ -25,9 +26,11 @@ public class ChatBean implements Serializable {
         currentUser = appFacadeInterface.getLoggedInDriver();
     }
 
-    public String sendMessage() {
+    public void sendMessage() {
+        if (getInput().isEmpty()) return;
         appFacadeInterface.sendMessage(currentUser, input);
-        return null;
+        messages = appFacadeInterface.getMessages();
+        input = "";
     }
 
     public List<ChatMessage> getMessages() {
@@ -45,9 +48,9 @@ public class ChatBean implements Serializable {
     }
 
     public String getInput() {
-        return input;
+        return input.strip();
     }
     public void setInput(String input) {
-        this.input = input;
+        this.input = input.strip();
     }
 }

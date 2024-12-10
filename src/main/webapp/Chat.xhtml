@@ -20,9 +20,14 @@
                     </h:panelGroup>
                 </p:dataList>
             </div>
-            <div style="margin-top: 20px;">
-                <h:inputTextarea id="input" value="#{chat.input}" cols="50" rows="2" styleClass="chat-input"/>
-                <h:commandButton value="Send" action="#{chat.sendMessage}" update="chatForm" styleClass="chat-button"/>
+            <div class="chat-input-container">
+                <h:inputTextarea id="input" value="#{chat.input}" cols="50" rows="2" styleClass="chat-input">
+                    <f:ajax event="keyup" render="sendButton"/>
+                </h:inputTextarea>
+                <div class="button-container">
+                    <h:commandButton id="sendButton" value="Send" action="#{chat.sendMessage}" update="chatForm" styleClass="chat-button" disabled="#{chat.input.length() == 0}"/>
+                    <h:button value="Back" outcome="back" styleClass="chat-button"/>
+                </div>
             </div>
         </h:form>
     </h:body>

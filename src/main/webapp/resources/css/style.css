@@ -51,105 +51,122 @@ body {
     justify-content: space-between;
 }
 
-.form-container .button-container h:commandButton {
+.form-container .button-container {
     width: 45%;
     padding: 8px;
-    background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
     text-align: center;
 }
 
 .message-container {
-    background-color: #ece5b5;
-    color: #837624;
-    border: 1px solid #e8e3a6;
+    background-color: #f4eba8;
+    color: #d3be2b;
+    border: 1px solid #78721e;
     padding: 10px;
     border-radius: 5px;
     margin-top: 15px;
     list-style-type: none;
 }
-
 .button-container {
     margin-top: 20px;
+    display: flex;
+    gap: 10px;
 }
 
-input, select {
-    padding: 8px;
-    margin-bottom: 10px;
+.chat-container {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 600px; /* Ancho fijo */
+}
+
+.chat-container h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.chat-window {
     width: 100%;
+    height: 800px; /* Altura fija */
+    overflow-y: auto; /* Activa el scroll si los mensajes exceden la altura */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: white;
     box-sizing: border-box;
 }
 
-.chat-container .chat-window {
-    width: 100%;
-    max-height: 500px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.chat-container .my-message {
+.chat-window .my-message {
     text-align: right;
     margin-bottom: 10px;
 }
 
-.chat-container .other-message {
+.chat-window .other-message {
     text-align: left;
     margin-bottom: 10px;
 }
 
-.chat-container .message-sender {
+.message-sender {
     display: block;
     font-weight: bold;
     margin-bottom: 2px;
-    color: #555;
 }
 
-.chat-container .message-text {
+.message-text {
     display: block;
-    padding: 8px 12px;
+    padding: 5px 10px;
     border-radius: 12px;
-    background-color: #e0e0e0;
+    background-color: #d4edda; /* Verde suave */
+    color: #155724;
     display: inline-block;
-    max-width: 75%;
-    word-wrap: break-word;
+    max-width: 80%;
 }
 
-.chat-container .my-message .message-text {
-    background-color: #dcf8c6;
+.my-message .message-text {
+    background-color: #cce5ff; /* Azul suave */
+    color: #004085;
 }
 
-.chat-container .other-message .message-text {
-    background-color: #f1f0f0;
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.chat-container #input {
+.chat-input {
+    width: 100%;
+    height: 90px;
+    box-sizing: border-box;
+    padding: 8px;
+    margin-right: 10px;
+    margin-top: 15px;
     border: 1px solid #ccc;
-    border-radius: 6px;
-    padding: 10px;
-    margin-top: 10px;
-    font-size: 1em;
-    width: calc(100% - 20px);
+    border-radius: 4px;
+    resize: none; /* Evita redimensionar el textarea */
 }
 
-.chat-container h:commandButton {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 20px;
+.chat-button {
+    width: 100px; /* Tamaño fijo para alinear con el input */
+    padding: 8px;
+    margin-top: 15px;
     cursor: pointer;
-    font-size: 1em;
-    margin-top: 10px;
-    transition: background-color 0.3s;
+    text-align: center;
 }
 
-.chat-container h:commandButton:hover {
-    background-color: #0056b3;
+/* Sobrescribe el estilo de todos los dataLists */
+.ui-datalist {
+    border: none !important; /* Elimina el borde */
+    box-shadow: none !important; /* Elimina cualquier sombra */
+    background: transparent !important; /* Opcional, para eliminar el fondo */
+}
+
+/* También ajusta el contenido interno si es necesario */
+.ui-datalist-content {
+    border: none !important;
+    box-shadow: none !important;
 }
