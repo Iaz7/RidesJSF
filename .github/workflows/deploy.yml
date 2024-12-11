@@ -1,9 +1,6 @@
 name: Deploy to Tomcat Server
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -15,36 +12,38 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Paso 2: Configurar la clave SSH
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
+      # Paso 2: Instalar Maven
+      - name: Set up Maven
+        uses: actions/setup-java@v3
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          
-      # Paso 3: Test conexión SSH
-      - name: Test SSH Connection
-        run: ssh -o StrictHostKeyChecking=no ubuntu@rides.iaz7.com "echo 'SSH connection successful'"
-        
-      # Paso 4: Confirmar si ROOT.war existe
-      - name: Check if ROOT.war exists
-        run: ssh ubuntu@rides.iaz7.com "[ -f /opt/tomcat/webapps/ROOT.war ] && echo 'Existing ROOT.war found' || echo 'No existing file'"
+          distribution: 'temurin'
+          java-version: '17'
 
-      # Paso 5: Construir el archivo .war (opcional)
+      - name: Install Maven
+        run: sudo apt-get update && sudo apt-get install -y maven
+
+      # Paso 3: Construir el archivo .war
       - name: Build .war
         run: |
-          ./mvnw clean package
+          mvn clean package
           mv target/*.war app.war
 
-      # Paso 6: Subir el archivo .war al servidor
-      - name: Deploy to server
+      # Paso 4: Configurar SSH
+      - name: Set up SSH
         run: |
-          scp app.war ubuntu@rides.iaz7.com:/opt/tomcat/webapps/ROOT.war
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      # Paso 5: Probar conexión SSH
+      - name: Test SSH Connection
+        run: ssh -i ~/.ssh/id_rsa ubuntu@rides.iaz7.com "echo 'SSH connection successful'"
+
+      # Paso 6: Subir el archivo .war
+      - name: Deploy WAR
+        run: |
+          scp -i ~/.ssh/id_rsa app.war ubuntu@rides.iaz7.com:/opt/tomcat/webapps/ROOT.war
 
       # Paso 7: Reiniciar Tomcat
       - name: Restart Tomcat
         run: |
-          ssh ubuntu@rides.iaz7.com "sudo systemctl restart tomcat"
-
-      # Paso 8: Verificar logs de Tomcat
-      - name: Check Tomcat logs
-        run: ssh ubuntu@rides.iaz7.com "tail -n 50 /opt/tomcat/logs/catalina.out"
+          ssh -i ~/.ssh/id_rsa ubuntu@rides.iaz7.com "sudo systemctl restart tomcat"
