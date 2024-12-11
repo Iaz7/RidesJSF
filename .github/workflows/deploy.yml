@@ -54,4 +54,4 @@ jobs:
 
       # Paso 9: Verificar logs de Tomcat
       - name: Check Tomcat logs
-        run: ssh ubuntu@rides.iaz7.com "tail -n 50 /opt/tomcat/logs/catalina.out"
+        run: ssh ubuntu@rides.iaz7.com "sudo tail -n 50 /opt/tomcat/logs/catalina.out"
