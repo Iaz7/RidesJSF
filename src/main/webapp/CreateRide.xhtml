@@ -27,7 +27,7 @@
             <h:message id="destinationMessage" for="destination" styleClass="error-message" />
 
             <label for="price">Price:</label>
-            <h:inputText id="price" value="#{createRide.price}" required="true" validatorMessage="Price must be between 0 and 200" converterMessage="Price must be a number">
+            <h:inputText id="price" value="#{createRide.price}" required="true" validatorMessage="Price must be between 0 and 200" converterMessage="Price must be a number" requiredMessage="This field must be filled">
                <f:ajax event="blur" render="priceMessage" />
                <f:validateDoubleRange minimum="0" maximum="200"/>
             </h:inputText>

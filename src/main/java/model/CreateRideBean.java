@@ -4,16 +4,16 @@ import businessLogic.BLFacade;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 import factories.BLFactory;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.util.Date;
 
 @Named("createRide")
-@SessionScoped
+@ViewScoped
 public class CreateRideBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
