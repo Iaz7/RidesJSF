@@ -17,7 +17,7 @@ jobs:
 
       # Paso 2: Configurar la clave SSH
       - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.10.4
+        uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
