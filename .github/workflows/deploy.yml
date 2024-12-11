@@ -20,11 +20,11 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
+          
       # Paso 3: Test conexión SSH
       - name: Test SSH Connection
-        run: ssh ubuntu@rides.iaz7.com "echo 'Connection successful'"
-
+        run: ssh -o StrictHostKeyChecking=no ubuntu@rides.iaz7.com "echo 'SSH connection successful'"
+        
       # Paso 4: Confirmar si ROOT.war existe
       - name: Check if ROOT.war exists
         run: ssh ubuntu@rides.iaz7.com "[ -f /opt/tomcat/webapps/ROOT.war ] && echo 'Existing ROOT.war found' || echo 'No existing file'"
