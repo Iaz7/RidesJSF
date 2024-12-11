@@ -3,32 +3,32 @@ package model;
 import businessLogic.BLFacade;
 import domain.ChatMessage;
 import factories.BLFactory;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
-import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Named("chat")
-@ViewScoped
+@SessionScoped
 public class ChatBean implements Serializable {
 
+    @Inject
+    private LoginBean loginBean;
+
     private List<ChatMessage> messages;
-    private String currentUser;
     private String input = "";
 
     private static BLFacade appFacadeInterface = BLFactory.getFacade();
 
     public ChatBean() {
         messages = appFacadeInterface.getMessages();
-        currentUser = appFacadeInterface.getLoggedInDriver();
     }
 
     public void sendMessage() {
         if (getInput().isEmpty()) return;
-        appFacadeInterface.sendMessage(currentUser, input);
+        appFacadeInterface.sendMessage(loginBean.getLoggedInDriver(), input);
         messages = appFacadeInterface.getMessages();
         input = "";
     }
@@ -41,10 +41,7 @@ public class ChatBean implements Serializable {
     }
 
     public String getCurrentUser() {
-        return currentUser;
-    }
-    public void setCurrentUser(String currentUser) {
-        this.currentUser = currentUser;
+        return loginBean.getLoggedInDriver();
     }
 
     public String getInput() {

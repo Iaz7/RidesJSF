@@ -29,10 +29,15 @@ public class LoginBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
 
         if (appFacadeInterface.login(email, password)) {
+            loggedInDriver = email;
             return "login";
         } else {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid email or password.", null));
             return null;
         }
     }
+
+    private String loggedInDriver;
+
+    public String getLoggedInDriver() { return loggedInDriver; }
 }

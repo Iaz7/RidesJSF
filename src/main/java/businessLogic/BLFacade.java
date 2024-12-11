@@ -3,7 +3,6 @@ package businessLogic;
 import java.util.Date;
 import java.util.List;
 
-//import domain.Booking;
 import domain.ChatMessage;
 import domain.Ride;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -76,8 +75,6 @@ public interface BLFacade  {
 	public boolean addDriver(String username, String password, String name);
 
 	public List<Ride> getRidesByDriver(String driverEmail);
-
-	public String getLoggedInDriver();
 
 	public List<ChatMessage> getMessages();
 

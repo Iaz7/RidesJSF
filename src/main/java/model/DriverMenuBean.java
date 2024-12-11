@@ -13,9 +13,5 @@ public class DriverMenuBean implements Serializable {
     @Inject
     private LoginBean loginBean;
 
-    public LoginBean getLoginBean() { return loginBean; }
-
-    public void setLoginBean(LoginBean loginBean) {
-        this.loginBean = loginBean;
-    }
+    public String getLoggedInDriver() { return loginBean.getLoggedInDriver(); }
 }

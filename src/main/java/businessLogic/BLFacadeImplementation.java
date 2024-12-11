@@ -1,12 +1,10 @@
 package businessLogic;
 import java.util.Date;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import dataAccess.HibernateDataAccess;
 import domain.ChatMessage;
 import domain.Ride;
-import domain.Driver;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
 
@@ -52,7 +50,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		Ride ride = dbManager.createRide(from, to, date, nPlaces, price, driverEmail);
 		dbManager.close();
 		return ride;
-   };
+   }
 	
    /**
     * {@inheritDoc}
@@ -77,9 +75,6 @@ public class BLFacadeImplementation  implements BLFacade {
 	public boolean login(String email, String password) {
 		dbManager.open();
 		boolean registered = dbManager.isRegistered(email, password);
-		if (registered) {
-			loggedInDriver = email;
-		}
 		dbManager.close();
 		return registered;
 	}
@@ -89,11 +84,6 @@ public class BLFacadeImplementation  implements BLFacade {
 		boolean added = dbManager.addDriver(username, password, name);
 		dbManager.close();
 		return added;
-	}
-
-	private String loggedInDriver;
-	public String getLoggedInDriver() {
-		return loggedInDriver;
 	}
 
 	public List<Ride> getRidesByDriver(String driverEmail) {

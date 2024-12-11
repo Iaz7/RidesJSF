@@ -4,18 +4,22 @@ import businessLogic.BLFacade;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 import factories.BLFactory;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.util.Date;
 
 @Named("createRide")
-@ViewScoped
+@SessionScoped
 public class CreateRideBean implements Serializable {
     private static final long serialVersionUID = 1L;
+
+    @Inject
+    private LoginBean loginBean;
 
     private String departCity;
     private String arrivalCity;
@@ -28,7 +32,7 @@ public class CreateRideBean implements Serializable {
     public String createRide() {
         FacesContext context = FacesContext.getCurrentInstance();
         try {
-            appFacadeInterface.createRide(departCity, arrivalCity, rideDate, seats, price, appFacadeInterface.getLoggedInDriver());
+            appFacadeInterface.createRide(departCity, arrivalCity, rideDate, seats, price, loginBean.getLoggedInDriver());
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Ride successfully created!", null));
         } catch (RideAlreadyExistException e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR: ride already exists", null));
