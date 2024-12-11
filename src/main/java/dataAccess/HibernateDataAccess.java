@@ -7,6 +7,7 @@ import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
@@ -80,7 +81,14 @@ public class HibernateDataAccess {
     public boolean isRegistered(String username, String password) {
         TypedQuery<String> travelerQuery = em.createQuery("SELECT d.password FROM Driver d WHERE d.email = :username", String.class);
         travelerQuery.setParameter("username", username);
-        return travelerQuery.getSingleResult().equals(password);
+        String result;
+        try {
+            result = travelerQuery.getSingleResult();
+        }
+        catch (NoResultException e) {
+            return false;
+        }
+        return result.equals(password);
     }
 
     public boolean addDriver(String username, String password, String name) {
