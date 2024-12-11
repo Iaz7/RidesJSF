@@ -23,14 +23,18 @@ public class ChatBean implements Serializable {
     private static BLFacade appFacadeInterface = BLFactory.getFacade();
 
     public ChatBean() {
-        messages = appFacadeInterface.getMessages();
+        refreshMessages();
     }
 
     public void sendMessage() {
         if (getInput().isEmpty()) return;
         appFacadeInterface.sendMessage(loginBean.getLoggedInDriver(), input);
-        messages = appFacadeInterface.getMessages();
+        refreshMessages();
         input = "";
+    }
+
+    public void refreshMessages() {
+        messages = appFacadeInterface.getMessages();
     }
 
     public List<ChatMessage> getMessages() {

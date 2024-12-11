@@ -13,7 +13,7 @@
             <h2>Chat</h2>
             <h:messages globalOnly="true" layout="list" styleClass="message-container" />
             <div class="chat-window">
-                <p:dataList value="#{chat.messages}" var="message" type="none" emptyMessage="No messages yet.">
+                <p:dataList id="message-list" value="#{chat.messages}" var="message" type="none" emptyMessage="No messages yet.">
                     <h:panelGroup layout="block" styleClass="#{message.sender.email.equals(chat.currentUser) ? 'my-message' : 'other-message'}">
                         <h:outputText value="#{message.sender.name}" styleClass="message-sender"/>
                         <h:outputText value="#{message.message}" styleClass="message-text"/>
@@ -25,10 +25,12 @@
                     <f:ajax event="keyup" render="sendButton"/>
                 </h:inputTextarea>
                 <div class="button-container">
-                    <h:commandButton id="sendButton" value="Send" action="#{chat.sendMessage}" update="chatForm" styleClass="chat-button" disabled="#{chat.input.length() == 0}"/>
+                    <h:commandButton id="sendButton" value="Send" action="#{chat.sendMessage}" update="chatForm, message-list" styleClass="chat-button" onclick="scrollToBottom()" disabled="#{chat.input.length() == 0}"/>
                     <h:button value="Back" outcome="back" styleClass="chat-button"/>
                 </div>
             </div>
+
+            <p:poll interval="10" listener="#{chat.refreshMessages}" update="message-list"/>
         </h:form>
     </h:body>
 </f:view>
