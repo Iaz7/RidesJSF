@@ -78,10 +78,9 @@ public class HibernateDataAccess {
     }
 
     public boolean isRegistered(String username, String password) {
-        TypedQuery<Long> travelerQuery = em.createQuery("SELECT COUNT(d) FROM Driver d WHERE d.email = :username AND d.password = :password", Long.class);
+        TypedQuery<String> travelerQuery = em.createQuery("SELECT d.password FROM Driver d WHERE d.email = :username", String.class);
         travelerQuery.setParameter("username", username);
-        travelerQuery.setParameter("password", password);
-        return travelerQuery.getSingleResult() > 0;
+        return travelerQuery.getSingleResult().equals(password);
     }
 
     public boolean addDriver(String username, String password, String name) {
