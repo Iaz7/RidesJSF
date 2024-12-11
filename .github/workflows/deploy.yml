@@ -3,7 +3,7 @@ name: Deploy to Tomcat Server
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:
