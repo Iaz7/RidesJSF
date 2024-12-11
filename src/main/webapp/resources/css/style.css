@@ -60,6 +60,10 @@ body {
     text-align: center;
 }
 
+.button-container {
+    width: 80% !important;
+}
+
 .message-container {
     background-color: #f4eba8;
     color: #d3be2b;
