@@ -44,7 +44,8 @@ jobs:
       # Paso 7: Subir el archivo .war al servidor
       - name: Deploy to server
         run: |
-          scp app.war ubuntu@rides.iaz7.com:/opt/tomcat/webapps/ROOT.war
+          scp app.war ubuntu@rides.iaz7.com:/tmp/ROOT.war
+          ssh ubuntu@rides.iaz7.com "sudo mv /tmp/ROOT.war /opt/tomcat/webapps/ROOT.war"
 
       # Paso 8: Reiniciar Tomcat
       - name: Restart Tomcat
