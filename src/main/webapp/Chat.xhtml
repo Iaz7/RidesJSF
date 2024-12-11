@@ -25,7 +25,7 @@
                     <f:ajax event="keyup" render="sendButton"/>
                 </h:inputTextarea>
                 <div class="button-container">
-                    <h:commandButton id="sendButton" value="Send" action="#{chat.sendMessage}" update="chatForm, message-list" styleClass="chat-button" onclick="scrollToBottom()" disabled="#{chat.input.length() == 0}"/>
+                    <h:commandButton id="sendButton" value="Send" action="#{chat.sendMessage}" update="chatForm, message-list" styleClass="chat-button" disabled="#{chat.input.length() == 0}"/>
                     <h:button value="Back" outcome="back" styleClass="chat-button"/>
                 </div>
             </div>
