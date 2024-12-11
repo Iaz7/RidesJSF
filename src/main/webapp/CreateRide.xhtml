@@ -13,28 +13,28 @@
          <h2>Create Ride</h2>
          <h:form>
             <label for="origin">Depart city:</label>
-            <h:inputText id="origin" value="#{createRide.departCity}" required="true" validatorMessage="City name must contain 3 characters, begin with a capital letter and have no numbers or special characters">
+            <h:inputText id="origin" value="#{createRide.departCity}" required="true" validatorMessage="City name must contain 3 characters, begin with a capital letter and have no numbers or special characters" requiredMessage="This field must be filled">
                <f:validateRegex pattern="^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúñÁÉÍÓÚÑ]*(\s[a-zA-ZáéíóúñÁÉÍÓÚÑ]+)*$" />
                <f:ajax event="blur" render="originMessage" />
             </h:inputText>
             <h:message id="originMessage" for="origin" styleClass="error-message" />
 
             <label for="destination">Arrival city:</label>
-            <h:inputText id="destination" value="#{createRide.arrivalCity}" required="true" validatorMessage="City name must contain 3 characters, begin with a capital letter and have no numbers">
+            <h:inputText id="destination" value="#{createRide.arrivalCity}" required="true" validatorMessage="City name must contain 3 characters, begin with a capital letter and have no numbers" requiredMessage="This field must be filled">
                <f:validateRegex pattern="^[A-ZÁÉÍÓÚÑ][a-zA-ZáéíóúñÁÉÍÓÚÑ]*(\s[a-zA-ZáéíóúñÁÉÍÓÚÑ]+)*$" />
                <f:ajax event="blur" render="destinationMessage" />
             </h:inputText>
             <h:message id="destinationMessage" for="destination" styleClass="error-message" />
 
             <label for="price">Price:</label>
-            <h:inputText id="price" value="#{createRide.price}" required="true" validatorMessage="Price must be between 0 and 200" converterMessage="Price must be a number">>
+            <h:inputText id="price" value="#{createRide.price}" required="true" validatorMessage="Price must be between 0 and 200" converterMessage="Price must be a number">
                <f:ajax event="blur" render="priceMessage" />
                <f:validateDoubleRange minimum="0" maximum="200"/>
             </h:inputText>
             <h:message id="priceMessage" for="price" styleClass="error-message" />
 
             <label for="seats">Seats:</label>
-            <h:inputText id="seats" value="#{createRide.seats}" required="true" validatorMessage="Seats must be between 0 and 20" converterMessage="Seats must be an integer">>
+            <h:inputText id="seats" value="#{createRide.seats}" required="true" validatorMessage="Seats must be between 0 and 20" converterMessage="Seats must be an integer" requiredMessage="This field must be filled">
                <f:ajax event="blur" render="seatsMessage" />
                <f:validateLongRange minimum="1" maximum="20"/>
             </h:inputText>
